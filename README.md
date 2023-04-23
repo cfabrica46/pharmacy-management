@@ -49,10 +49,46 @@ Este paquete implementara la logica de negocio de la aplicacion. Los controlador
 
 Este seria un ejemplo del flujo end to end:
 
-1. En el archivo Main.java se encuentra la función principal main() que es donde se inicia la aplicación. Desde aquí, se debe instanciar el controlador principal (ControladorPrincipal) y mostrar la vista principal (VentanaPrincipal).
+1. En el archivo **Main.java** se encuentra la función principal **main()** que es donde se inicia la aplicación. Desde aquí, se debe instanciar el controlador principal **(ControladorPrincipal)** y mostrar la vista principal **(VentanaPrincipal)**.
 ~~~
 public static void main(String[] args) {
     ControladorPrincipal controlador = new ControladorPrincipal();
     controlador.mostrarVentanaPrincipal();
 }
 ~~~
+
+2. La **VentanaPrincipal** es la vista principal de la aplicación y desde aquí se pueden acceder a las diferentes funcionalidades de la aplicación. Una de ellas podría ser la búsqueda de un cliente por DNI. Desde la **VentanaPrincipal** se debe invocar al controlador correspondiente para esta funcionalidad, que en este caso es el ControladorClientes.
+~~~
+public void buscarClientePorDni(String dni) {
+    ControladorClientes controladorClientes = new ControladorClientes();
+    controladorClientes.buscarClientePorDni(dni);
+}
+~~~
+
+3. El **ControladorClientes** es el encargado de manejar las solicitudes relacionadas con los clientes. En este caso, debe recibir el DNI del cliente a buscar y delegar la tarea al servicio correspondiente **(ServicioClientes)**.
+~~~
+public void buscarClientePorDni(String dni) {
+    ServicioClientes servicioClientes = new ServicioClientes();
+    Cliente cliente = servicioClientes.buscarPorDni(dni);
+    VentanaClientes ventanaClientes = new VentanaClientes();
+    ventanaClientes.mostrarClienteEncontrado(cliente);
+}
+~~~
+
+4. El **ServicioClientes** es el componente encargado de interactuar con la capa de modelo **(modelo)** para realizar operaciones sobre la entidad **Cliente**. En este caso, debe realizar la búsqueda del cliente por su DNI.
+~~~
+public Cliente buscarPorDni(String dni) {
+    Cliente clienteEncontrado = null;
+    for (Cliente cliente : listaClientes) {
+        if (cliente.getDni().equals(dni)) {
+            clienteEncontrado = cliente;
+            break;
+        }
+    }
+    return clienteEncontrado;
+}
+~~~
+
+5. La capa de modelo **(modelo)** es la encargada de contener las entidades y la lógica de negocio de la aplicación. En este caso, la entidad **Cliente** debe tener los métodos **getDni()** y **setDni()**, así como otros métodos necesarios para interactuar con los datos del cliente. Además, la clase **ServicioClientes** debe tener acceso a los datos de la lista de clientes para poder realizar la búsqueda.
+
+Este sería un ejemplo básico de cómo se puede utilizar el patrón MVC para obtener un cliente por su DNI. Por supuesto, esto puede variar dependiendo de la complejidad de la aplicación y de las funcionalidades que se quieran implementar.
