@@ -2,7 +2,7 @@
 
 ## Arquitectura
 Se Propone usar el patron de diseño/arquitectura Modelo Vista Controlador (MVC), esto con el fin de preservar la legibilidad, integridad y escalabilidad de nuestro proyecto
-
+~~~
   - main
     - Main.java
   - vista
@@ -32,7 +32,7 @@ Se Propone usar el patron de diseño/arquitectura Modelo Vista Controlador (MVC)
     - ServicioProductos.java
     - ServicioVentas.java
     - ServicioInventario.java
-
+~~~
 ### Modelo
 Principalmente contendra las clases que utilizara nuestro proyecto a si mismo como los metodos que nos permiten acceder y modificr sus atributos. Cada vista debería tener su propio controlador correspondiente.
 
