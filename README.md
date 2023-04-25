@@ -1,5 +1,8 @@
 # Farmacy Management
 
+![UML](img/uml.jpg)
+
+
 ## Arquitectura
 Se Propone usar el patron de diseño/arquitectura Modelo Vista Controlador (MVC), esto con el fin de preservar la legibilidad, integridad y escalabilidad de nuestro proyecto
 ~~~
