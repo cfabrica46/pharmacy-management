@@ -1,5 +1,6 @@
 # Farmacy Management
 
+## Diagramación UML
 ![UML](img/uml.jpg)
 
 
